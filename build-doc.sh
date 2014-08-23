@@ -8,5 +8,5 @@ if [ "$TRAVIS_BRANCH" = 'master' ] && [ "$TRAVIS_PULL_REQUEST" = 'false' ]; then
   git config user.name "iron-bot"
   git config user.email "ironframework@gmail.com"
   git commit -m "(docs-autogen) ${TRAVIS_REPO_SLUG}."
-  git push -q "https://${TOKEN}@github.com/iron/iron.github.io.git" master
+  git push -q "https://${TOKEN}:x-oauth-basic@github.com/iron/iron.github.io.git" master
 fi
