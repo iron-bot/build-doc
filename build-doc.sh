@@ -14,6 +14,13 @@ if [ "$TRAVIS_BRANCH" = 'master' ] && [ "$TRAVIS_PULL_REQUEST" = 'false' ]; then
 
   # Log is included in the toolchain for rustdoc, so we must override it to use our own
   ls target/debug/deps/liblog-*.rlib | xargs -I % rustdoc -L ./target/debug/deps --extern log=% -o ./docs/doc src/lib.rs --crate-name="$cratename" --html-in-header ./head.html --html-before-content ./header.html --html-after-content ./footer.html
+
+  # Compile iron on top of it to update the indices
+  git clone https://github.com/iron/iron.git
+  cd iron
+  cargo build && cargo test && ls target/debug/deps/liblog-*.rlib | xargs -I % rustdoc -L ./target/debug/deps --extern log=% -o ../docs/doc src/lib.rs --crate-name=iron --html-in-header ../head.html --html-before-content ../header.html --html-after-content ../footer.html
+  cd -
+
   cd docs && git add --all
   git config user.name "iron-bot"
   git config user.email "ironframework@gmail.com"
