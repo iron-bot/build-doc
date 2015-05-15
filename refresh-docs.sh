@@ -1,23 +1,23 @@
-which ack || brew install ack;
-
 updateDoc() {
   git clone "https://github.com/iron/${1}.git";
 
   cd $1;
 
-  cargo build;
-  cargo test;
-
-  cratename=`ack -m1 'name.*\"(.*)\"$' Cargo.toml --output='$1'`
-  ls target/debug/deps/liblog-*.rlib | xargs -I % rustdoc -L ./target/debug/deps --extern log=% -o ../../doc src/lib.rs --crate-name="$cratename" --html-in-header ../../head.html --html-before-content ../../header.html --html-after-content ../../footer.html
+  cargo doc
+  mkdir tmp
+  mv target/doc/search-index.js new-search-index.js
+  cp -Rf target/doc/* ../../doc
+  cp ../../doc/search-index.js old-search-index.js
+  ../../../merge-search-indices/target/release/merge-search-indices && mv merged-search-index.js ../../doc/search-index.js || mv old-search-index.js ../../doc/search-index.js
 
   cd -;
 }
 
-git clone https://github.com/iron/iron.github.com.git
-cd iron.github.com
+git clone https://github.com/iron/iron.github.io.git
+cd iron.github.io
 
-rm -rf doc
+rm -rf doc/*
+touch doc/search-index.js
 
 mkdir tmp;
 cd tmp;
@@ -32,9 +32,6 @@ updateDoc mount;
 updateDoc logger;
 updateDoc session;
 updateDoc cookie;
-
-# Update iron again to update the indices
-updateDoc iron;
 
 cd ..
 rm -rf tmp

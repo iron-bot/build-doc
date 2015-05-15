@@ -1,0 +1,4 @@
+[package]
+name = "merge-search-indices"
+version = "0.1.0"
+authors = ["Zach Pomerantz <zmp@umich.edu>"]
