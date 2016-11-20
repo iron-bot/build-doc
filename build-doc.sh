@@ -1,11 +1,11 @@
-if [ "$TRAVIS_BRANCH" = 'master' ] && [ "$TRAVIS_PULL_REQUEST" = 'false' ]; then
+if [ "$TRAVIS_BRANCH" = 'master' ] && [ "$TRAVIS_PULL_REQUEST" = 'false' ] && [ "$TRAVIS_RUST_VERSION" = 'nightly' ]; then
   # Fetch the docs
   git clone https://github.com/iron/iron.github.io.git docs
   
   # TODO: Custom stylings
 
   # Doc the crate and its dependencies
-  cargo doc
+  cargo doc --all-features
   mkdir tmp
   mv target/doc/search-index.js new-search-index.js
   cp docs/doc/search-index.js old-search-index.js
