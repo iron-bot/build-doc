@@ -12,7 +12,7 @@ if [ "$TRAVIS_BRANCH" = 'master' ] && [ "$TRAVIS_PULL_REQUEST" = 'false' ] && [ 
   # Update the docs
   cp -Rf target/doc/* docs/doc
   # Update the search indices
-  curl -L -O https://raw.githubusercontent.com/iron-bot/build-doc/master/merge-search-indices/target/release/merge-search-indices
+  curl -L -O https://raw.githubusercontent.com/iron/build-doc/master/merge-search-indices/target/release/merge-search-indices
   chmod +x merge-search-indices
   ./merge-search-indices && mv merged-search-index.js docs/doc/search-index.js
 
