@@ -32,6 +32,7 @@ updateDoc mount;
 updateDoc logger;
 updateDoc session;
 updateDoc cookie;
+updateDoc params;
 
 cd ..
 rm -rf tmp
