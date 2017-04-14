@@ -11,7 +11,7 @@ if [ "$TRAVIS_BRANCH" = 'master' ] && [ "$TRAVIS_PULL_REQUEST" = 'false' ] && [ 
   rm -rf $DOC_NAME
   mkdir $DOC_NAME
   cd $DOC_NAME
-  echo "<meta http-equiv=refresh content='3; URL=https://docs.rs/$DOC_NAME'>" > index.html
+  echo "<meta http-equiv=refresh content='0; URL=https://docs.rs/$DOC_NAME'>" > index.html
 
   add --all
   git config user.name "iron-bot"
