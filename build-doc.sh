@@ -13,7 +13,7 @@ if [ "$TRAVIS_BRANCH" = 'master' ] && [ "$TRAVIS_PULL_REQUEST" = 'false' ] && [ 
   cd $DOC_NAME
   echo "<meta http-equiv=refresh content='0; URL=https://docs.rs/$DOC_NAME'>" > index.html
 
-  add --all
+  git add --all
   git config user.name "iron-bot"
   git config user.email "ironframework@gmail.com"
   git commit -m "(docs-autogen) ${TRAVIS_REPO_SLUG}."
